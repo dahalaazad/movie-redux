@@ -1,0 +1,12 @@
+.list-container {
+    padding: 10px;
+    width: 40%;
+    
+}
+
+ul>div{ 
+    width :50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
