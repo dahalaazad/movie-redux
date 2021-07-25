@@ -1,11 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux';
 import './MovieDetails.css';
-//import { selectMovie } from "../actions/index";
+import { useSelector } from "react-redux";
+//import { selectMovie } from '../../redux/actions/movieActions';
 
-const MovieDetails = (props) => {
+
+
+function MovieDetails () {
+    const movie = useSelector((state) => state.selectedMovie);
+    console.log(movie);
+    //const dispatch = useDispatch();
     // <div><h2>Movie List</h2></div>
-    if (!props.selectedMovie) {
+    if (!movie) {
      return (
         <div className="details-container" style={{width: '70%'}}>
             <h2>Movie</h2>
@@ -20,21 +25,16 @@ const MovieDetails = (props) => {
             <div className="details-container" >
                 <h2>Movie</h2>
                 <div className="properties">
-                    <p>Title: {props.selectedMovie.title} </p>
-                    <p>Release Date: {props.selectedMovie.releaseDate}</p>
-                    <p>IMDB Rating: {props.selectedMovie.rating}</p>
+                    <p>Title: {movie.title} </p>
+                    <p>Release Date: {movie.releaseDate}</p>
+                    <p>IMDB Rating: {movie.rating}</p>
                 </div>
             </div>
         )
     }
 } 
 
-const mapStateToProps = (state) => {
-    return {
-        selectedMovie: state.selectedMovie
-    }
-  };
+export default MovieDetails;
   
   
   
-  export default connect(mapStateToProps)(MovieDetails);

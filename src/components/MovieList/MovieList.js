@@ -1,15 +1,21 @@
 import React from "react";
-import { connect } from "react-redux";
-import { selectMovie } from "../../actions/index";
 import './MovieList.css';
+import { useSelector, useDispatch } from "react-redux";
+import { selectMovie } from "../../redux/actions/movieActions";
 
-const MovieList = (props) => {
+
+function MovieList (){
+
+  const movie = useSelector(state => state.movies);
+  console.log(movie);
+    const dispatch = useDispatch();
+    //console.log(movie);
     // <div><h2>Movie List</h2></div>
-    const listItems = props.movies.map((movie) => {
+    const listItems = movie.map((movies) => {
         return(
-          <div key={movie.title} >
-            <span>{movie.title}</span>
-            <button onClick={() => props.selectMovie(movie)}>details</button>
+          <div key={movies.title} >
+            <span>{movies.title}</span>
+            <button onClick={() =>dispatch(selectMovie(movies))}>details</button>
           </div>
          );
     })
@@ -23,16 +29,10 @@ const MovieList = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    movies: state.movies
-  }
-};
-
-const mapDispatchToProps = {
-  selectMovie: selectMovie
-};
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(MovieList);
+export default MovieList;
+
+
+
 
